@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+//This is for test branch
 @Component
 @Entity(name = "Book")
 public class Book implements Serializable{
