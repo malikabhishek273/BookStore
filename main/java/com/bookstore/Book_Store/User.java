@@ -1,5 +1,7 @@
 package com.bookstore.Book_Store;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-
+@Component
 @Entity(name = "User")
 public class User implements Serializable {
 	@Id

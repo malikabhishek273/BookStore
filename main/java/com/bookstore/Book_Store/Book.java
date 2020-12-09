@@ -1,5 +1,7 @@
 package com.bookstore.Book_Store;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+@Component
 @Entity(name = "Book")
 public class Book implements Serializable{
     @Id
