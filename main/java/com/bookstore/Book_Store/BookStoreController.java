@@ -3,6 +3,9 @@ package com.bookstore.Book_Store;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,16 +21,20 @@ public class BookStoreController {
 	BookStoreService bookStoreService;
 	
 	@PostMapping("/addBook")
-	public String addBook(@RequestBody Book book) {
+	public ResponseEntity<String> addBook(@RequestBody Book book) {
+		String msg=book.getBookName()+" "+"Book has been added successfully";
 		bookStoreService.addBook(book);
-		return book.getBookName()+" "+"Book has been added sucessfully";
+		return new ResponseEntity<String>(msg, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getBook/{bookId}")
-	public Book getBook(@PathVariable("bookId") int bookId) {
+	public ResponseEntity<Book> getBook(@PathVariable("bookId") int bookId) {
 		Book book=new Book();
 		book=bookStoreService.getBook(bookId);
-		return book;
+		HttpHeaders header=new HttpHeaders();
+		header.add("testHeader","This is header value");
+		header.add("testheader2","This is test header2");
+		return new ResponseEntity<Book>(book,header,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getBooks/{userId}")
